@@ -7,7 +7,11 @@ layout: page
 	<li>
 		{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
 		<div class="post-meta">
-			<a class="post-link" href="{{ post.url | relative_url }}">
+			{% if post.external_url %}
+			  <a class="post-link" href="{{ post.external_url }}">	
+		        {% else %}
+			  <a class="post-link" href="{{ post.url | relative_url }}">
+			{% endif %}
 				<h2 class="post-title">{{ post.title | escape }}</h2>
 			</a>
 			<div class="post-date"><i class="icon-calendar"></i>{{ post.date | date: date_format }}</div>
@@ -21,4 +25,3 @@ layout: page
 	{%- endfor -%}
 </ul>
 {%- endif -%}
-
